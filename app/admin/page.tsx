@@ -272,7 +272,7 @@ export default function AdminDashboardPage() {
                       {selectedToon.id}
                     </span>
                     <span className="text-xs text-slate-400 font-bold uppercase tracking-wider">
-                      {selectedToon.toonType === 'minitoon' ? 'Minitoon Smart Card (B1 Pininfarina Style)' : 'Microtoon Smartphone Edition'}
+                      {selectedToon.toonType === 'minitoon' ? 'SmartToon Card' : 'SmartToon MicroToon'}
                     </span>
                   </div>
                   <h2 className="text-2xl font-extrabold text-white mt-2">{selectedToon.fullName}</h2>
