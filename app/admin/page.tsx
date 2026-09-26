@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { INITIAL_TOONS, STATUS_LABELS, ToonStatus, SmartToonData } from '@/lib/store';
 import { createClient } from '@/lib/supabase/client';
+import { profileUrl } from '@/lib/site';
 import { 
   ShieldCheck, 
   Search, 
@@ -34,6 +35,14 @@ export default function AdminDashboardPage() {
   const [selectedId, setSelectedId] = useState<string>('ST-000125');
   const [loading, setLoading] = useState<boolean>(true);
   const [filterStatus, setFilterStatus] = useState<string>('all');
+  const [renderDraft, setRenderDraft] = useState<string>('');
+  const [nfcDraft, setNfcDraft] = useState<string>('');
+  const [notice, setNotice] = useState<{ type: 'ok' | 'error'; text: string } | null>(null);
+
+  const showNotice = (type: 'ok' | 'error', text: string) => {
+    setNotice({ type, text });
+    setTimeout(() => setNotice(null), 3500);
+  };
 
   const supabase = createClient();
 
@@ -89,43 +98,60 @@ export default function AdminDashboardPage() {
 
   const selectedToon = toonsMap[selectedId] || Object.values(toonsMap)[0];
 
+  // Allinea i campi di modifica quando cambia l'ordine selezionato
+  useEffect(() => {
+    setRenderDraft(selectedToon?.render3dUrl || '');
+    setNfcDraft(selectedToon?.nfcUid || '');
+  }, [selectedToon?.id]);
+
   const handleStatusChange = async (newStatus: ToonStatus) => {
     if (!selectedToon) return;
     const updated = { ...selectedToon, status: newStatus };
     const updatedMap = { ...toonsMap, [selectedToon.id]: updated };
     setToonsMap(updatedMap);
 
-    try {
-      await supabase.from('toons').update({ status: newStatus }).eq('id', selectedToon.id);
-    } catch (err) {
-      console.warn('Supabase update failed:', err);
-    }
+    const { error } = await supabase.from('toons').update({ status: newStatus }).eq('id', selectedToon.id);
+    if (error) showNotice('error', `Stato non salvato: ${error.message}`);
+    else showNotice('ok', `Stato aggiornato: ${STATUS_LABELS[newStatus].label}`);
   };
 
-  const handleNfcUidChange = async (uid: string) => {
+  // Salva l'UID solo quando si esce dal campo, non a ogni tasto
+  const handleNfcUidSave = async () => {
     if (!selectedToon) return;
-    const updated = { ...selectedToon, nfcUid: uid };
-    const updatedMap = { ...toonsMap, [selectedToon.id]: updated };
-    setToonsMap(updatedMap);
-
-    try {
-      await supabase.from('toons').update({ nfc_uid: uid }).eq('id', selectedToon.id);
-    } catch (err) {
-      console.warn('Supabase update failed:', err);
+    const uid = nfcDraft.trim().toUpperCase();
+    if (uid === (selectedToon.nfcUid || '')) return;
+    if (uid && !/^([0-9A-F]{2}:){3,9}[0-9A-F]{2}$/.test(uid)) {
+      showNotice('error', 'Formato UID non valido (atteso es. 04:A2:8F:9A:3C:60:80)');
+      return;
     }
+    const { error } = await supabase.from('toons').update({ nfc_uid: uid || null }).eq('id', selectedToon.id);
+    if (error) {
+      showNotice('error', `UID non salvato: ${error.message}`);
+      return;
+    }
+    setToonsMap({ ...toonsMap, [selectedToon.id]: { ...selectedToon, nfcUid: uid } });
+    setNfcDraft(uid);
+    showNotice('ok', 'UID chip NFC salvato');
   };
 
-  const handleRenderUrlChange = async (url: string) => {
+  // Invia il render al cliente solo con il pulsante esplicito
+  const handleRenderSend = async () => {
     if (!selectedToon) return;
-    const updated = { ...selectedToon, render3dUrl: url, status: 'da_approvare' as const };
-    const updatedMap = { ...toonsMap, [selectedToon.id]: updated };
-    setToonsMap(updatedMap);
-
-    try {
-      await supabase.from('toons').update({ render_3d_url: url, status: 'da_approvare' }).eq('id', selectedToon.id);
-    } catch (err) {
-      console.warn('Supabase update failed:', err);
+    const url = renderDraft.trim();
+    if (!/^https?:\/\//.test(url)) {
+      showNotice('error', 'Inserisci un URL valido che inizi con https://');
+      return;
     }
+    const { error } = await supabase
+      .from('toons')
+      .update({ render_3d_url: url, status: 'da_approvare' })
+      .eq('id', selectedToon.id);
+    if (error) {
+      showNotice('error', `Render non inviato: ${error.message}`);
+      return;
+    }
+    setToonsMap({ ...toonsMap, [selectedToon.id]: { ...selectedToon, render3dUrl: url, status: 'da_approvare' } });
+    showNotice('ok', 'Render inviato: il cliente lo vede nella sua area riservata');
   };
 
   const toonsList = Object.values(toonsMap).filter(t => {
@@ -144,6 +170,18 @@ export default function AdminDashboardPage() {
 
   return (
     <div className="min-h-screen bg-[#07090e] text-slate-100 p-4 sm:p-8 font-sans selection:bg-purple-500 selection:text-white">
+      {notice && (
+        <div
+          role="status"
+          className={`fixed bottom-6 left-1/2 -translate-x-1/2 z-50 px-4 py-3 rounded-2xl text-xs font-semibold shadow-2xl border ${
+            notice.type === 'ok'
+              ? 'bg-emerald-950/95 border-emerald-700 text-emerald-300'
+              : 'bg-red-950/95 border-red-700 text-red-300'
+          }`}
+        >
+          {notice.text}
+        </div>
+      )}
       <div className="max-w-7xl mx-auto space-y-8">
 
         {/* TOP NAVIGATION HEADER */}
@@ -332,13 +370,13 @@ export default function AdminDashboardPage() {
                 <div className="flex items-center gap-2">
                   <input
                     type="url"
-                    value={selectedToon.render3dUrl || ''}
-                    onChange={(e) => handleRenderUrlChange(e.target.value)}
+                    value={renderDraft}
+                    onChange={(e) => setRenderDraft(e.target.value)}
                     placeholder="Incolla URL Immagine Render 3D (es. https://...)"
                     className="flex-1 bg-[#07090e] border border-slate-800 rounded-2xl px-3.5 py-2.5 text-xs text-white outline-none focus:border-amber-500"
                   />
                   <button
-                    onClick={() => alert('Render 3D salvato ed inviato al cliente!')}
+                    onClick={handleRenderSend}
                     className="px-5 py-2.5 bg-amber-600 hover:bg-amber-500 text-white font-bold text-xs rounded-2xl transition"
                   >
                     Invia al Cliente
@@ -365,8 +403,9 @@ export default function AdminDashboardPage() {
                     <label className="block text-[11px] text-slate-400 mb-1">UID Chip NFC Fisico:</label>
                     <input
                       type="text"
-                      value={selectedToon.nfcUid || ''}
-                      onChange={(e) => handleNfcUidChange(e.target.value)}
+                      value={nfcDraft}
+                      onChange={(e) => setNfcDraft(e.target.value)}
+                      onBlur={handleNfcUidSave}
                       placeholder="04:A2:8F:9A:3C:60:80"
                       className="w-full bg-slate-900 border border-slate-800 rounded-xl px-3 py-2 text-xs font-mono text-white outline-none focus:border-sky-500"
                     />
@@ -375,7 +414,7 @@ export default function AdminDashboardPage() {
                   <div className="text-[11px] text-slate-400">
                     URL scritto sul Tag NFC:
                     <div className="mt-1 p-2 bg-slate-900 rounded border border-slate-800 font-mono text-[10px] text-emerald-400 truncate">
-                      https://smarttoonapp.vercel.app/t/{selectedToon.id}
+                      {profileUrl(selectedToon.id)}
                     </div>
                   </div>
                 </div>

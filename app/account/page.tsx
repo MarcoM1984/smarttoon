@@ -27,6 +27,7 @@ export default function ClientAccountPage() {
   const [isSaved, setIsSaved] = useState(false);
   const [approvalFeedback, setApprovalFeedback] = useState('');
   const [isApproved, setIsApproved] = useState(false);
+  const [revisionSent, setRevisionSent] = useState(false);
 
   const supabase = createClient();
 
@@ -173,7 +174,8 @@ export default function ClientAccountPage() {
       console.warn('Supabase update failed:', err);
     }
 
-    alert('Richiesta di revisione inviata allo studio 3D e salvata su Supabase!');
+    setRevisionSent(true);
+    setTimeout(() => setRevisionSent(false), 4000);
   };
 
   if (loading) {
@@ -516,6 +518,11 @@ export default function ClientAccountPage() {
                           <RotateCcw className="w-3.5 h-3.5" />
                           <span>Invia Richiesta di Revisione</span>
                         </button>
+                        {revisionSent && (
+                          <p role="status" className="mt-2 text-xs text-emerald-400 flex items-center gap-1.5">
+                            <Check className="w-3.5 h-3.5" /> Richiesta inviata allo studio 3D.
+                          </p>
+                        )}
                       </div>
                     </div>
                   )}

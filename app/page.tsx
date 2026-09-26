@@ -57,11 +57,6 @@ export default function HomePage() {
   return (
     <div className="min-h-screen bg-[#07090e] text-slate-100 flex flex-col items-center justify-start overflow-x-hidden selection:bg-sky-500 selection:text-white font-sans">
       
-      {/* ANNOUNCEMENT BAR */}
-      <div className="w-full bg-gradient-to-r from-sky-600 via-indigo-600 to-purple-600 text-white text-[11px] sm:text-xs font-semibold py-2 px-4 text-center flex items-center justify-center gap-2">
-        <Sparkles className="w-3.5 h-3.5 text-amber-300 animate-spin" />
-        <span>Spedizione Gratuita in tutta Italia su tutti gli ordini! Codice Promo: <strong>SMARTFREE</strong></span>
-      </div>
 
       {/* AMBIENT LIGHTING EFFECTS */}
       <div className="fixed top-0 left-1/2 -translate-x-1/2 w-[350px] sm:w-[1200px] h-[350px] sm:h-[600px] bg-gradient-to-b from-sky-500/15 via-indigo-600/10 to-transparent blur-[140px] sm:blur-[180px] pointer-events-none -z-10"></div>
@@ -97,12 +92,6 @@ export default function HomePage() {
             <User className="w-3.5 h-3.5 text-purple-400" /> Area Cliente
           </button>
           
-          <button 
-            onClick={() => router.push('/admin')}
-            className="hidden sm:flex px-4 py-2.5 rounded-xl text-xs font-bold text-slate-200 hover:text-white bg-slate-900 border border-slate-800 hover:border-slate-700 transition items-center gap-1.5"
-          >
-            <ShieldCheck className="w-3.5 h-3.5 text-amber-400" /> Admin
-          </button>
 
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -115,7 +104,7 @@ export default function HomePage() {
 
       {/* MOBILE DRAWER MENU */}
       {mobileMenuOpen && (
-        <div className="md:hidden fixed inset-x-0 top-[105px] bg-[#07090e]/95 backdrop-blur-2xl border-b border-slate-800/80 p-6 space-y-4 z-30 shadow-2xl">
+        <div className="md:hidden fixed inset-x-0 top-[73px] bg-[#07090e]/95 backdrop-blur-2xl border-b border-slate-800/80 p-6 space-y-4 z-30 shadow-2xl">
           <nav className="flex flex-col space-y-3 text-sm font-semibold text-slate-200">
             <a href="#customizer" onClick={() => setMobileMenuOpen(false)} className="p-3.5 bg-slate-900/80 rounded-xl border border-slate-800/80 flex items-center justify-between text-sky-400">
               <span>Crea il tuo Toon 3D</span> <ChevronRight className="w-4 h-4 text-slate-500" />
@@ -130,12 +119,9 @@ export default function HomePage() {
               <span>FAQ</span> <ChevronRight className="w-4 h-4 text-slate-500" />
             </a>
           </nav>
-          <div className="grid grid-cols-2 gap-3 pt-2">
+          <div className="grid grid-cols-1 gap-3 pt-2">
             <button onClick={() => { setMobileMenuOpen(false); router.push('/account'); }} className="py-3.5 bg-sky-600 text-white font-bold text-xs rounded-xl flex justify-center items-center gap-1.5 shadow-lg">
               <User className="w-4 h-4" /> Area Cliente
-            </button>
-            <button onClick={() => { setMobileMenuOpen(false); router.push('/admin'); }} className="py-3.5 bg-slate-900 border border-slate-800 text-white font-bold text-xs rounded-xl flex justify-center items-center gap-1.5">
-              <ShieldCheck className="w-4 h-4 text-amber-400" /> Admin
             </button>
           </div>
         </div>
@@ -155,7 +141,7 @@ export default function HomePage() {
           </h1>
 
           <p className="text-slate-400 text-sm sm:text-base leading-relaxed font-normal">
-            Una Persona $\rightarrow$ Una Rappresentazione Fisica 3D $\rightarrow$ Un'Identità Digitale. Avvicina lo smartphone al Toon per accedere istantaneamente al profilo online del proprietario.
+            Una persona → un personaggio 3D fisico → un'identità digitale. Avvicina lo smartphone al Toon per accedere istantaneamente al profilo online del proprietario.
           </p>
 
           <div className="grid grid-cols-2 gap-3 pt-2">
@@ -202,7 +188,7 @@ export default function HomePage() {
         <div className="relative">
           <div className="aspect-[4/3] rounded-3xl overflow-hidden border-2 border-slate-800 bg-slate-950 relative shadow-2xl group">
             <img 
-              src="/microtoon-mockup.jpg" 
+              src="/product-microtoon.jpg" 
               alt="Smart Toons Funko 3D Personaggio" 
               className="w-full h-full object-cover group-hover:scale-105 transition duration-500"
             />
@@ -286,7 +272,7 @@ export default function HomePage() {
               {selectedProduct === 'minitoon' ? (
                 <div className="space-y-4">
                   <div className="w-full aspect-[16/10] rounded-xl overflow-hidden border border-slate-800">
-                    <img src="/card-mockup.jpg" alt="SmartToon Card Preview" className="w-full h-full object-cover" />
+                    <img src="/product-card.jpg" alt="SmartToon Card Preview" className="w-full h-full object-cover" />
                   </div>
                   <span className="text-xs font-bold text-sky-400 block">SmartToon Card (85x54 mm)</span>
                   <span className="text-[11px] text-slate-400 block">Personaggio 3D in rilievo + Chip NFC + QR Code</span>
@@ -294,7 +280,7 @@ export default function HomePage() {
               ) : (
                 <div className="space-y-4">
                   <div className="w-full aspect-[16/10] rounded-xl overflow-hidden border border-slate-800">
-                    <img src="/microtoon-mockup.jpg" alt="SmartToon MicroToon Preview" className="w-full h-full object-cover" />
+                    <img src="/product-microtoon.jpg" alt="SmartToon MicroToon Preview" className="w-full h-full object-cover" />
                   </div>
                   <span className="text-xs font-bold text-purple-400 block">SmartToon MicroToon (30-50 mm)</span>
                   <span className="text-[11px] text-slate-400 block">Portachiavi 3D Vinyl Cartoon Style + Tag NFC Integrato</span>
@@ -306,11 +292,11 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* PRODUCTS SECTION (SPEC SECTION 4: MINITOON & MICROTOON) */}
+      {/* PRODUCTS SECTION */}
       <section id="prodotti" className="w-full max-w-7xl mx-auto px-4 sm:px-6 py-20 border-t border-slate-800/80">
         <div className="text-center max-w-2xl mx-auto mb-16">
           <span className="text-xs font-bold uppercase tracking-widest text-sky-400 bg-sky-950/60 border border-sky-800/40 px-3.5 py-1 rounded-full">
-            Sezione 4 del Progetto
+            I Prodotti
           </span>
           <h2 className="text-3xl sm:text-5xl font-black text-white mt-4 tracking-tight">I Due Prodotti Smart Toons</h2>
           <p className="text-slate-400 text-sm mt-2">Ogni prodotto contiene l'URL univoco ed il collegamento al profilo digitale cloud.</p>
@@ -323,14 +309,14 @@ export default function HomePage() {
             <div className="space-y-5">
               <div className="flex items-center justify-between">
                 <span className="text-[10px] font-extrabold uppercase tracking-widest text-sky-400 bg-sky-950/80 border border-sky-800/60 px-3 py-1 rounded-full">
-                  4.1 SMARTTOON CARD
+                  SMARTTOON CARD
                 </span>
                 <span className="text-3xl font-black text-white">€49 <span className="text-xs font-normal text-slate-500">/ una tantum</span></span>
               </div>
 
               <div className="aspect-[16/10] rounded-2xl overflow-hidden border border-slate-800 bg-slate-950 relative">
                 <img 
-                  src="/card-mockup.jpg" 
+                  src="/product-card.jpg" 
                   alt="SmartToon Card" 
                   className="w-full h-full object-cover group-hover:scale-105 transition duration-500"
                 />
@@ -373,14 +359,14 @@ export default function HomePage() {
             <div className="space-y-5">
               <div className="flex items-center justify-between">
                 <span className="text-[10px] font-extrabold uppercase tracking-widest text-purple-400 bg-purple-950/80 border border-purple-800/60 px-3 py-1 rounded-full">
-                  4.2 SMARTTOON MICROTOON
+                  SMARTTOON MICROTOON
                 </span>
                 <span className="text-3xl font-black text-white">€39 <span className="text-xs font-normal text-slate-500">/ una tantum</span></span>
               </div>
 
               <div className="aspect-[16/10] rounded-2xl overflow-hidden border border-slate-800 bg-slate-950 relative">
                 <img 
-                  src="/microtoon-mockup.jpg" 
+                  src="/product-microtoon.jpg" 
                   alt="SmartToon MicroToon" 
                   className="w-full h-full object-cover group-hover:scale-105 transition duration-500"
                 />
@@ -500,7 +486,6 @@ export default function HomePage() {
             <a href="#come-funziona" className="hover:text-sky-400 transition">Come Funziona</a>
             <a href="#faq" className="hover:text-sky-400 transition">FAQ</a>
             <button onClick={() => router.push('/account')} className="hover:text-sky-400 transition">Area Cliente</button>
-            <button onClick={() => router.push('/admin')} className="hover:text-sky-400 transition">Admin</button>
           </div>
 
           <p className="text-[11px] text-slate-600">© 2026 Smart Toons Studio — All rights reserved.</p>

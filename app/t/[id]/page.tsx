@@ -16,10 +16,7 @@ import {
   Linkedin, 
   Share2, 
   Sparkles,
-  ArrowLeft,
   Loader2,
-  Check,
-  Zap,
   Box
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
@@ -27,9 +24,9 @@ import confetti from 'canvas-confetti';
 export default function PublicToonProfilePage() {
   const params = useParams();
   const router = useRouter();
-  const id = (params?.id as string) || 'ST-000125';
-  
-  const [toon, setToon] = useState<SmartToonData | null>(INITIAL_TOONS[id] || INITIAL_TOONS['ST-000125']);
+  const id = decodeURIComponent((params?.id as string) || '').toUpperCase();
+
+  const [toon, setToon] = useState<SmartToonData | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [copied, setCopied] = useState<boolean>(false);
 
@@ -60,7 +57,7 @@ export default function PublicToonProfilePage() {
             instagram: p.instagram || '',
             linkedin: p.linkedin || '',
             tiktok: p.tiktok || '',
-            avatarUrl: p.avatar_url || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80',
+            avatarUrl: p.avatar_url || '/logo.jpg',
             toonType: toonData.type || 'minitoon',
             status: toonData.status || 'attivo',
             nfcUid: toonData.nfc_uid || '',
@@ -69,12 +66,13 @@ export default function PublicToonProfilePage() {
             createdAt: toonData.created_at || new Date().toISOString()
           };
           setToon(mapped);
-        } else if (INITIAL_TOONS[id]) {
-          setToon(INITIAL_TOONS[id]);
+        } else {
+          // Nessun record su Supabase: usa i dati demo solo se l'ID è uno dei profili dimostrativi
+          setToon(INITIAL_TOONS[id] || null);
         }
       } catch (err) {
         console.warn('Supabase fallback:', err);
-        if (INITIAL_TOONS[id]) setToon(INITIAL_TOONS[id]);
+        setToon(INITIAL_TOONS[id] || null);
       } finally {
         setLoading(false);
       }
@@ -111,6 +109,26 @@ export default function PublicToonProfilePage() {
     );
   }
 
+  if (toon.status !== 'attivo') {
+    return (
+      <div className="min-h-screen bg-[#090d16] flex flex-col items-center justify-center p-6 text-center text-slate-100">
+        <div className="w-16 h-16 rounded-full bg-amber-500/10 border border-amber-500/30 flex items-center justify-center mb-4">
+          <Box className="w-8 h-8 text-amber-400" />
+        </div>
+        <h1 className="text-2xl font-bold mb-2">Smart Toon in preparazione</h1>
+        <p className="text-slate-400 max-w-sm text-sm mb-6">
+          Questo Smart Toon (<code className="text-sky-400 bg-sky-950/50 px-2 py-1 rounded">{toon.id}</code>) non è ancora stato attivato dal proprietario. Riprova più tardi.
+        </p>
+        <button
+          onClick={() => router.push('/')}
+          className="px-5 py-2.5 bg-sky-600 hover:bg-sky-500 text-white font-medium text-sm rounded-xl transition"
+        >
+          Scopri Smart Toons
+        </button>
+      </div>
+    );
+  }
+
   const handleDownloadVCard = () => {
     confetti({
       particleCount: 70,
@@ -139,25 +157,6 @@ export default function PublicToonProfilePage() {
       {/* Background Ambient Blur */}
       <div className="fixed top-0 left-1/2 -translate-x-1/2 w-[600px] h-[400px] bg-gradient-to-b from-sky-500/20 via-indigo-600/15 to-transparent blur-[120px] pointer-events-none -z-10"></div>
 
-      {/* Simulator Top Nav Bar */}
-      <div className="w-full max-w-md bg-slate-900/80 border border-slate-800 rounded-2xl p-3 mb-6 flex items-center justify-between shadow-2xl backdrop-blur-md text-xs z-10">
-        <div className="flex items-center gap-2">
-          <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping"></span>
-          <span className="text-slate-300 font-semibold flex items-center gap-1">
-            <Radio className="w-3.5 h-3.5 text-sky-400" /> TAP NFC Verified
-          </span>
-        </div>
-        <div className="flex items-center gap-2">
-          <select 
-            value={toon.id} 
-            onChange={(e) => router.push(`/t/${e.target.value}`)}
-            className="bg-slate-950 text-sky-400 font-mono text-xs border border-slate-800 rounded-lg px-2.5 py-1 outline-none cursor-pointer hover:border-sky-500"
-          >
-            <option value="ST-000125">ST-000125 (Marco M.)</option>
-            <option value="ST-000126">ST-000126 (Elena R.)</option>
-          </select>
-        </div>
-      </div>
 
       {/* Main Glassmorphic Profile Card (iOS 18 Theme) */}
       <div className="w-full max-w-md bg-gradient-to-b from-slate-900/90 via-slate-900/95 to-slate-950 border border-slate-800/90 rounded-[32px] p-6 sm:p-8 shadow-2xl backdrop-blur-2xl relative overflow-hidden">
@@ -328,18 +327,10 @@ export default function PublicToonProfilePage() {
 
       </div>
 
-      {/* Nav Footer */}
-      <div className="mt-8 flex items-center gap-4 text-xs text-slate-400">
-        <button onClick={() => router.push('/')} className="hover:text-sky-400 transition flex items-center gap-1">
-          <ArrowLeft className="w-3.5 h-3.5" /> Home
-        </button>
-        <span>•</span>
-        <button onClick={() => router.push('/account')} className="hover:text-sky-400 transition">
-          Area Cliente
-        </button>
-        <span>•</span>
-        <button onClick={() => router.push('/admin')} className="hover:text-sky-400 transition">
-          Pannello Admin
+      {/* Footer CTA */}
+      <div className="mt-8 text-xs text-slate-400">
+        <button onClick={() => router.push('/')} className="hover:text-sky-400 transition">
+          Vuoi anche tu il tuo Smart Toon? <span className="font-semibold text-sky-400">Scopri come →</span>
         </button>
       </div>
 
