@@ -1,7 +1,8 @@
 # MANUALE ADMIN & GUIDA OPERATIVA — SMART TOONS
-> **Versione Documento:** 2.0 (ONLINE SU VERCEL E SUPABASE CLOUD)  
+> **Versione Documento:** 2.1 (VERIFICATO E LIVE SU VERCEL & SUPABASE)  
 > **Ultimo Aggiornamento:** 26 Settembre 2026  
-> **Percorso Progetto:** `E:\Desktop PcMarco\ClaudeAI\SmartToon`  
+> **URL Pubblico Ufficiale:** `https://smarttoonapp.vercel.app`  
+> **Percorso Progetto Locale:** `E:\Desktop PcMarco\ClaudeAI\SmartToon`  
 > **Repository GitHub:** `https://github.com/MarcoM1984/smarttoon`
 
 ---
@@ -13,13 +14,14 @@ Smart Toons è una piattaforma web (PWA) che collega un personaggio 3D personali
 
 ---
 
-## 🟢 STATO ATTUALE: ONLINE SU INTERNET VIA VERCEL!
+## 🟢 STATO ATTUALE: VERIFICATO E LIVE SU INTERNET!
 
-Le **FASE 1 e FASE 2 della Roadmap sono state completate con successo!** L'applicazione è ora pubblicata live su Vercel in HTTPS ed è collegata al database Cloud Supabase.
+Le **FASE 1 e FASE 2 della Roadmap sono state completate con successo!** L'applicazione è pubblicata online su Vercel in HTTPS ed è collegata al database Cloud Supabase.
 
+* ✅ **Sito Ufficiale Live:** `https://smarttoonapp.vercel.app`
 * ✅ Tabelle `profiles` e `toons` live su Supabase Cloud (`kaehhbuwxfrqvhfagddf.supabase.co`).
 * ✅ Codice salvato e protetto nel repository GitHub (`MarcoM1984/smarttoon`).
-* ✅ **Deploy Automatico su Vercel:** Ogni volta che facciamo una modifica al codice, Vercel aggiorna il sito live in 5 secondi!
+* ✅ **Deploy Automatico su Vercel:** Ogni volta che facciamo una modifica al codice su GitHub, Vercel aggiorna il sito live in 5 secondi!
 
 ---
 
@@ -53,39 +55,38 @@ flowchart LR
 
 ---
 
-## 🌐 MAPPA DELLE ROTTE DELL'APPLICAZIONE
+## 🌐 MAPPA DELLE ROTTE DELL'APPLICAZIONE (LIVE ONLINE)
 
-| Sezione | URL | Descrizione |
+| Sezione | URL Pubblico Live | Descrizione |
 | :--- | :--- | :--- |
-| **Homepage & Simulatore** | `https://smarttoon-app.vercel.app/` | Presentazione dei prodotti e pulsanti rapidi per simulare l'esperienza. |
-| **Profilo Pubblico NFC / QR** | `https://smarttoon-app.vercel.app/t/ST-000125` | La pagina di destinazione legata a Supabase che si apre su smartphone facendo il *TAP* NFC. |
-| **Area Riservata Cliente** | `https://smarttoon-app.vercel.app/account` | Area dove il cliente modifica i propri dati su Supabase Cloud, carica le foto e approva il render 3D. |
-| **Pannello Amministratore** | `https://smarttoon-app.vercel.app/admin` | Dashboard per gestire il flusso degli ordini e assegnare i Tag NFC in tempo reale. |
+| **Homepage & Simulatore** | `https://smarttoonapp.vercel.app/` | Presentazione dei prodotti e pulsanti rapidi per simulare l'esperienza. |
+| **Profilo Pubblico NFC / QR** | `https://smarttoonapp.vercel.app/t/ST-000125` | La pagina di destinazione legata a Supabase che si apre su smartphone facendo il *TAP* NFC. |
+| **Area Riservata Cliente** | `https://smarttoonapp.vercel.app/account` | Area dove il cliente modifica i propri dati su Supabase Cloud, carica le foto e approva il render 3D. |
+| **Pannello Amministratore** | `https://smarttoonapp.vercel.app/admin` | Dashboard per gestire il flusso degli ordini e assegnare i Tag NFC in tempo reale. |
 
 ---
 
 ## 🛠️ GUIDA OPERATIVA ALL'USO
 
 ### A. Profilo Pubblico NFC / QR (`/t/[id]`)
-* **Come testare il TAP NFC su smartphone vero:** Apri dal tuo telefono il link pubblico Vercel (es. `/t/ST-000125`).
+* **Come testare il TAP NFC su smartphone vero:** Apri dal tuo telefono il link pubblico reale `https://smarttoonapp.vercel.app/t/ST-000125`.
 * **Download Contatto in Rubrica:** Clicca su **"Salva Contatto in Rubrica"** per scaricare la vCard (`.vcf`).
 
 ### B. Area Riservata Cliente (`/account`)
-* **Salvataggio su Cloud:** Quando modifichi un numero di telefono o la Bio e clicchi *"Salva Modifiche"*, il dato viene aggiornato nel database Supabase.
+* **Salvataggio su Cloud:** Quando modifichi un numero di telefono o la Bio dall'Area Cliente `https://smarttoonapp.vercel.app/account` e clicchi *"Salva Modifiche"*, il dato viene aggiornato nel database Supabase Cloud.
 
 ### C. Pannello Amministratore (`/admin`)
-* **Gestione Lavorazione & NFC:** Aggiorna lo stato dell'ordine, assegna l'UID del chip NFC e inserisci l'URL del render 3D.
+* **Gestione Lavorazione & NFC:** Aggiorna lo stato dell'ordine, assegna l'UID del chip NFC e inserisci l'URL del render 3D su `https://smarttoonapp.vercel.app/admin`.
 
 ---
 
 ## 📝 REGISTRO DELLE MODIFICHE (CHANGELOG)
 
+### Versione 2.1 (26/09/2026)
+* 🎯 **URL Ufficiale Verificato:** Configurazione dell'indirizzo `https://smarttoonapp.vercel.app`.
+
 ### Versione 2.0 (26/09/2026)
 * 🚀 **Vercel Deployment Live:** L'applicazione è ufficialmente online su Vercel con SSL/HTTPS e CI/CD da GitHub.
-* 📦 Collegamento al repository GitHub `MarcoM1984/smarttoon`.
-
-### Versione 1.2 (26/09/2026)
-* 🚀 **Supabase Cloud Live:** Collegamento completo dell'applicazione al database remoto Supabase.
 
 ### Versione 1.0 (26/09/2026)
 * ✅ Inizializzazione del progetto Next.js 14 con TypeScript e Tailwind CSS.
