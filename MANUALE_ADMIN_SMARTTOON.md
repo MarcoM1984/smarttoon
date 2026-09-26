@@ -1,7 +1,8 @@
 # MANUALE ADMIN & GUIDA OPERATIVA — SMART TOONS
-> **Versione Documento:** 1.2 (Supabase Cloud Collegato ed Operativo)  
+> **Versione Documento:** 2.0 (ONLINE SU VERCEL E SUPABASE CLOUD)  
 > **Ultimo Aggiornamento:** 26 Settembre 2026  
-> **Percorso Progetto:** `E:\Desktop PcMarco\ClaudeAI\SmartToon`
+> **Percorso Progetto:** `E:\Desktop PcMarco\ClaudeAI\SmartToon`  
+> **Repository GitHub:** `https://github.com/MarcoM1984/smarttoon`
 
 ---
 
@@ -12,13 +13,13 @@ Smart Toons è una piattaforma web (PWA) che collega un personaggio 3D personali
 
 ---
 
-## 🟢 STATO ATTUALE: SUPABASE CLOUD OPERATIVO!
+## 🟢 STATO ATTUALE: ONLINE SU INTERNET VIA VERCEL!
 
-La **FASE 1 della Roadmap è stata completata con successo**. L'applicazione legge e scrive in tempo reale sul tuo database Postgres Cloud di Supabase (`kaehhbuwxfrqvhfagddf.supabase.co`).
+Le **FASE 1 e FASE 2 della Roadmap sono state completate con successo!** L'applicazione è ora pubblicata live su Vercel in HTTPS ed è collegata al database Cloud Supabase.
 
-* ✅ Tabelle `profiles` e `toons` create su Supabase.
-* ✅ Profilo Demo **Marco Marrazzo (`ST-000125`)** creato nel Cloud.
-* ✅ L'Area Cliente e il Pannello Admin aggiornano il Cloud in tempo reale.
+* ✅ Tabelle `profiles` e `toons` live su Supabase Cloud (`kaehhbuwxfrqvhfagddf.supabase.co`).
+* ✅ Codice salvato e protetto nel repository GitHub (`MarcoM1984/smarttoon`).
+* ✅ **Deploy Automatico su Vercel:** Ogni volta che facciamo una modifica al codice, Vercel aggiorna il sito live in 5 secondi!
 
 ---
 
@@ -26,24 +27,22 @@ La **FASE 1 della Roadmap è stata completata con successo**. L'applicazione leg
 
 ```mermaid
 flowchart LR
-    Fase1["✅ FASE 1<br/>Database Cloud<br/>(COMPLETATO)"] --> Fase2["🔵 FASE 2<br/>Deploy & Dominio<br/>(Prossimo Passo)"]
-    Fase2 --> Fase3["🟡 FASE 3<br/>Pagamenti Stripe"]
+    Fase1["✅ FASE 1<br/>Database Cloud<br/>(COMPLETATO)"] --> Fase2["✅ FASE 2<br/>Deploy Vercel<br/>(COMPLETATO)"]
+    Fase2 --> Fase3["🟡 FASE 3<br/>Pagamenti Stripe<br/>(Prossimo Passo)"]
     Fase3 --> Fase4["🟣 FASE 4<br/>Visualizzatore 3D & Analytics"]
 ```
 
 ### ✅ FASE 1: Database Cloud (COMPLETATO)
 - [x] Creare il progetto su Supabase Cloud.
 - [x] Eseguire lo script SQL per creare le tabelle `profiles` e `toons`.
-- [x] Collegare la chiave Publishable nel file `.env.local`.
 - [x] Sincronizzare Profilo Pubblico, Area Cliente e Pannello Admin con Supabase.
 
-### 🔵 FASE 2: Deploy su Vercel e Dominio Custom (Prossimo Passo - 1 Ora)
-- [ ] Collegare la cartella del progetto ad un repository GitHub.
-- [ ] Connettere GitHub a **Vercel** per avere il deployment automatico HTTPS gratuito.
-- [ ] Associare il dominio (es. `smarttoons.it`).
-- [ ] Testare l'URL pubblico reale su smartphone reale tramite scansione QR Code.
+### ✅ FASE 2: Deploy su Vercel e Github (COMPLETATO)
+- [x] Collegare il progetto al repository GitHub `MarcoM1984/smarttoon`.
+- [x] Connettere GitHub a **Vercel** con deployment automatico HTTPS.
+- [x] Sincronizzare le variabili d'ambiente Supabase in Vercel.
 
-### 🟡 FASE 3: E-commerce & Pagamenti Automatici (2 Giorni)
+### 🟡 FASE 3: E-commerce & Pagamenti Automatici (Prossimo Passo - 2 Giorni)
 - [ ] Integrare **Stripe Checkout** per l'acquisto di *Minitoon Smart Card* e *Microtoon Smartphone Edition*.
 - [ ] Creazione automatica dell'ordine `ST-XXXXXX` a pagamento completato.
 - [ ] Invio email automatiche di conferma e notifica avanzamento lavorazione.
@@ -56,43 +55,37 @@ flowchart LR
 
 ## 🌐 MAPPA DELLE ROTTE DELL'APPLICAZIONE
 
-| Sezione | URL Locale | Descrizione |
+| Sezione | URL | Descrizione |
 | :--- | :--- | :--- |
-| **Homepage & Simulatore** | `http://localhost:3000/` | Presentazione dei prodotti e pulsanti rapidi per simulare l'esperienza. |
-| **Profilo Pubblico NFC / QR** | `http://localhost:3000/t/ST-000125` | La pagina di destinazione legata a Supabase che si apre su smartphone facendo il *TAP* NFC. |
-| **Area Riservata Cliente** | `http://localhost:3000/account` | Area dove il cliente modifica i propri dati su Supabase Cloud, carica le foto e approva il render 3D. |
-| **Pannello Amministratore** | `http://localhost:3000/admin` | Dashboard per gestire il flusso degli ordini e assegnare i Tag NFC in tempo reale. |
+| **Homepage & Simulatore** | `https://smarttoon-app.vercel.app/` | Presentazione dei prodotti e pulsanti rapidi per simulare l'esperienza. |
+| **Profilo Pubblico NFC / QR** | `https://smarttoon-app.vercel.app/t/ST-000125` | La pagina di destinazione legata a Supabase che si apre su smartphone facendo il *TAP* NFC. |
+| **Area Riservata Cliente** | `https://smarttoon-app.vercel.app/account` | Area dove il cliente modifica i propri dati su Supabase Cloud, carica le foto e approva il render 3D. |
+| **Pannello Amministratore** | `https://smarttoon-app.vercel.app/admin` | Dashboard per gestire il flusso degli ordini e assegnare i Tag NFC in tempo reale. |
 
 ---
 
 ## 🛠️ GUIDA OPERATIVA ALL'USO
 
 ### A. Profilo Pubblico NFC / QR (`/t/[id]`)
-* **Come testare il TAP NFC:** Apri la pagina `/t/ST-000125`. I dati vengono recuperati direttamente da Supabase Cloud!
+* **Come testare il TAP NFC su smartphone vero:** Apri dal tuo telefono il link pubblico Vercel (es. `/t/ST-000125`).
 * **Download Contatto in Rubrica:** Clicca su **"Salva Contatto in Rubrica"** per scaricare la vCard (`.vcf`).
 
 ### B. Area Riservata Cliente (`/account`)
-* **Salvataggio su Cloud:** Quando modifichi un numero di telefono o il nome dall'Area Cliente e clicchi *"Salva Modifiche"*, il dato viene aggiornato sul database Supabase!
+* **Salvataggio su Cloud:** Quando modifichi un numero di telefono o la Bio e clicchi *"Salva Modifiche"*, il dato viene aggiornato nel database Supabase.
 
 ### C. Pannello Amministratore (`/admin`)
-* **Gestione Avanzamento Lavorazione:** Cliccando sugli stati dell'ordine o cambiando l'UID del chip NFC, il database Cloud si aggiorna immediatamente.
+* **Gestione Lavorazione & NFC:** Aggiorna lo stato dell'ordine, assegna l'UID del chip NFC e inserisci l'URL del render 3D.
 
 ---
 
 ## 📝 REGISTRO DELLE MODIFICHE (CHANGELOG)
 
+### Versione 2.0 (26/09/2026)
+* 🚀 **Vercel Deployment Live:** L'applicazione è ufficialmente online su Vercel con SSL/HTTPS e CI/CD da GitHub.
+* 📦 Collegamento al repository GitHub `MarcoM1984/smarttoon`.
+
 ### Versione 1.2 (26/09/2026)
 * 🚀 **Supabase Cloud Live:** Collegamento completo dell'applicazione al database remoto Supabase.
-* ⚡ Sincronizzazione in tempo reale di Profilo Pubblico, Area Cliente e Pannello Admin.
-
-### Versione 1.1 (26/09/2026)
-* 📑 Aggiunta la sezione **Cosa Manca per essere Operativi** e la **Roadmap di Ottimizzazione a 4 Fasi**.
-* 🛠️ Corretta e ottimizzata la gestione delle metatag Viewport in Next.js 14.
 
 ### Versione 1.0 (26/09/2026)
 * ✅ Inizializzazione del progetto Next.js 14 con TypeScript e Tailwind CSS.
-* ✅ Creazione del sistema di generazione vCard (.vcf) nativo.
-* ✅ Realizzazione del Profilo Pubblico NFC (`/t/[id]`).
-* ✅ Realizzazione dell'Area Riservata Cliente (`/account`).
-* ✅ Realizzazione del Pannello Amministratore (`/admin`).
-* ✅ Redazione del Manuale Admin Operativo (`MANUALE_ADMIN_SMARTTOON.md`).
