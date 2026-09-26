@@ -18,8 +18,15 @@ import {
   ChevronRight,
   Menu,
   X,
-  Flame,
-  Check
+  Star,
+  ShoppingBag,
+  Truck,
+  Heart,
+  Smile,
+  Shield,
+  Check,
+  RefreshCw,
+  Search
 } from 'lucide-react';
 
 export default function HomePage() {
@@ -29,370 +36,309 @@ export default function HomePage() {
 
   const faqs = [
     {
-      q: "Come funziona la trasformazione della mia foto in un Toon 3D?",
-      a: "Dopo l'ordine, carichi 2 o 3 foto del tuo volto nell'Area Cliente. I nostri artisti 3D modellano il tuo avatar personalizzato e ti inviano l'anteprima 3D da approvare prima della stampa fisica."
+      q: "Come trasformate la mia foto in una statuetta 3D stile Funko Cartoon?",
+      a: "Dopo l'acquisto, carichi nell'Area Cliente 2 o 3 foto del tuo volto. I nostri artisti 3D scultori creano la caricatura stile cartoon vinyl (Funko Pop) e ti inviano l'anteprima 3D prima di mandarla in stampa."
     },
     {
-      q: "Cosa succede se cambio numero di telefono o social network in futuro?",
-      a: "Non devi riprogrammare il chip o cambiare l'oggetto fisico! Ti basta accedere alla tua Area Cliente online e modificare le informazioni: il tuo Toon NFC si aggiornerà all'istante."
+      q: "Cosa succede se voglio modificare i miei dati o social in futuro?",
+      a: "Non devi riprogrammare il chip o cambiare la statuetta! Ti basta accedere alla tua Area Cliente online e modificare i tuoi contatti: il tuo Minitoon NFC aggiornerà il profilo pubblico all'istante."
     },
     {
-      q: "Il chip NFC ha bisogno di batteria o ricarica?",
-      a: "No! I tag NFC (NTAG213) sono passivi e non richiedono alcuna batteria. Funzionano all'infinito per induzione elettromagnetica quando avvicinati a qualsiasi smartphone."
+      q: "Il chip NFC ha bisogno di batterie?",
+      a: "Assolutamente no! I chip NFC inseriti nelle nostre statuette e card sono passivi (NTAG213) e funzionano all'infinito senza batterie quando avvicinati a qualsiasi smartphone."
     },
     {
-      q: "Funziona con tutti gli smartphone iPhone e Android?",
-      a: "Sì! Tutti gli iPhone prodotti negli ultimi anni (da iPhone XS in poi) ed il 99% degli smartphone Android leggono nativamente i chip NFC senza bisogno di installare nessuna applicazione."
+      q: "Quali sono i tempi di creazione e spedizione?",
+      a: "Dall'approvazione del modello 3D, la stampa, la rifinitura a mano e la programmazione NFC richiedono circa 3-5 giorni lavorativi. La spedizione express consegna in 24/48 ore."
     }
   ];
 
   return (
-    <div className="min-h-screen bg-[#07090e] text-slate-100 flex flex-col items-center justify-start overflow-x-hidden selection:bg-cyan-500 selection:text-white font-sans">
+    <div className="min-h-screen bg-[#f8fafc] text-slate-800 flex flex-col items-center justify-start overflow-x-hidden font-sans selection:bg-sky-500 selection:text-white">
       
-      {/* GLOWING AMBIENT LIGHTING EFFECTS */}
-      <div className="fixed top-0 left-1/2 -translate-x-1/2 w-[350px] sm:w-[1200px] h-[350px] sm:h-[600px] bg-gradient-to-b from-cyan-500/20 via-blue-600/15 to-transparent blur-[120px] sm:blur-[160px] pointer-events-none -z-10"></div>
+      {/* TOP ANNOUNCEMENT BAR */}
+      <div className="w-full bg-gradient-to-r from-sky-600 via-indigo-600 to-sky-600 text-white text-[11px] sm:text-xs font-semibold py-2 px-4 text-center flex items-center justify-center gap-2">
+        <Sparkles className="w-3.5 h-3.5 text-amber-300 animate-spin" />
+        <span>🎉 Spedizione Gratuita su tutti gli ordini questa settimana! Usa il codice: <strong>SMARTFREE</strong></span>
+      </div>
 
-      {/* HEADER / NAVIGATION BAR */}
-      <header className="w-full max-w-7xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between z-40 sticky top-0 bg-[#07090e]/90 backdrop-blur-xl border-b border-slate-800/60">
-        <div className="flex items-center gap-2.5 cursor-pointer" onClick={() => router.push('/')}>
-          <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-2xl bg-gradient-to-tr from-cyan-400 via-blue-600 to-purple-600 p-[2px] shadow-lg shadow-cyan-500/25 shrink-0">
-            <div className="w-full h-full bg-[#0b0f19] rounded-[14px] flex items-center justify-center">
-              <Box className="w-4 h-4 sm:w-5 sm:h-5 text-cyan-400" />
+      {/* HEADER / NAVIGATION BAR (VELKRA FACTORY STYLE) */}
+      <header className="w-full max-w-7xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between z-40 sticky top-0 bg-white/90 backdrop-blur-md border-b border-slate-200 shadow-sm">
+        <div className="flex items-center gap-3 cursor-pointer" onClick={() => router.push('/')}>
+          <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-2xl bg-gradient-to-tr from-sky-500 to-indigo-600 p-[2px] shadow-md shadow-sky-500/20 shrink-0">
+            <div className="w-full h-full bg-white rounded-[14px] flex items-center justify-center overflow-hidden">
+              <Smile className="w-6 h-6 text-sky-600" />
             </div>
           </div>
           <div>
-            <span className="font-black text-lg sm:text-xl text-white tracking-wider flex items-center gap-1">
-              SMART<span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">TOONS</span>
+            <span className="font-black text-xl text-slate-900 tracking-tight flex items-center gap-1">
+              MINITOON<span className="text-sky-600">FACTORY</span>
             </span>
-            <span className="block text-[8px] sm:text-[9px] uppercase tracking-[0.2em] text-slate-400 font-bold">3D Avatar & NFC Studio</span>
+            <span className="block text-[9px] uppercase tracking-widest text-slate-500 font-bold">Statuette 3D Cartoon NFC</span>
           </div>
         </div>
 
-        {/* Desktop Navigation Links */}
-        <div className="hidden md:flex items-center gap-8 text-xs font-semibold text-slate-300">
-          <a href="#come-funziona" className="hover:text-cyan-400 transition">Come Funziona</a>
-          <a href="#prodotti" className="hover:text-cyan-400 transition">Prodotti & Prezzi</a>
-          <a href="#galleria" className="hover:text-cyan-400 transition">Galleria 3D</a>
-          <a href="#faq" className="hover:text-cyan-400 transition">FAQ</a>
+        {/* Desktop Links */}
+        <div className="hidden md:flex items-center gap-8 text-xs font-bold text-slate-700">
+          <a href="#collezione" className="hover:text-sky-600 transition">Collezione 3D</a>
+          <a href="#come-funziona" className="hover:text-sky-600 transition">Come Funziona</a>
+          <a href="#recensioni" className="hover:text-sky-600 transition">Recensioni</a>
+          <a href="#faq" className="hover:text-sky-600 transition">FAQ</a>
         </div>
 
-        {/* Action Buttons & Mobile Menu Trigger */}
+        {/* Action Buttons */}
         <div className="flex items-center gap-2 sm:gap-3">
           <button 
             onClick={() => router.push('/account')}
-            className="hidden sm:flex px-3.5 py-2 rounded-xl text-xs font-semibold text-slate-300 hover:text-white bg-slate-900 border border-slate-800 hover:border-slate-700 transition items-center gap-1.5"
+            className="hidden sm:flex px-3.5 py-2 rounded-xl text-xs font-bold text-slate-700 hover:text-sky-600 bg-slate-100 border border-slate-200 hover:bg-slate-200 transition items-center gap-1.5"
           >
-            <User className="w-3.5 h-3.5 text-purple-400" /> Area Cliente
+            <User className="w-4 h-4 text-sky-600" /> Area Cliente
           </button>
           
           <button 
             onClick={() => router.push('/admin')}
-            className="hidden sm:flex px-3.5 py-2 rounded-xl text-xs font-semibold text-slate-300 hover:text-white bg-slate-900 border border-slate-800 hover:border-slate-700 transition items-center gap-1.5"
+            className="hidden sm:flex px-3.5 py-2 rounded-xl text-xs font-bold text-slate-700 hover:text-sky-600 bg-slate-100 border border-slate-200 hover:bg-slate-200 transition items-center gap-1.5"
           >
-            <ShieldCheck className="w-3.5 h-3.5 text-amber-400" /> Admin
+            <ShieldCheck className="w-4 h-4 text-purple-600" /> Admin
           </button>
 
-          {/* Mobile Hamburger Toggle Button */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden p-2.5 bg-slate-900 border border-slate-800 rounded-xl text-slate-300 hover:text-white"
-            aria-label="Toggle Navigation Menu"
+            className="md:hidden p-2 bg-slate-100 border border-slate-200 rounded-xl text-slate-700"
           >
-            {mobileMenuOpen ? <X className="w-5 h-5 text-cyan-400" /> : <Menu className="w-5 h-5 text-cyan-400" />}
+            {mobileMenuOpen ? <X className="w-5 h-5 text-sky-600" /> : <Menu className="w-5 h-5 text-sky-600" />}
           </button>
         </div>
       </header>
 
-      {/* MOBILE DRAWER NAVIGATION MENU */}
+      {/* MOBILE DRAWER MENU */}
       {mobileMenuOpen && (
-        <div className="md:hidden fixed inset-x-0 top-[65px] bg-[#07090e]/95 backdrop-blur-2xl border-b border-slate-800/80 p-6 space-y-4 z-30 shadow-2xl animate-in fade-in slide-in-from-top-4 duration-200">
-          <nav className="flex flex-col space-y-3 text-sm font-semibold text-slate-200">
-            <a 
-              href="#come-funziona" 
-              onClick={() => setMobileMenuOpen(false)} 
-              className="p-3 bg-slate-900/60 rounded-xl border border-slate-800/60 flex items-center justify-between text-cyan-400"
-            >
-              <span>Come Funziona</span>
-              <ChevronRight className="w-4 h-4 text-slate-500" />
-            </a>
-            <a 
-              href="#prodotti" 
-              onClick={() => setMobileMenuOpen(false)} 
-              className="p-3 bg-slate-900/60 rounded-xl border border-slate-800/60 flex items-center justify-between"
-            >
-              <span>Prodotti & Prezzi</span>
-              <ChevronRight className="w-4 h-4 text-slate-500" />
-            </a>
-            <a 
-              href="#galleria" 
-              onClick={() => setMobileMenuOpen(false)} 
-              className="p-3 bg-slate-900/60 rounded-xl border border-slate-800/60 flex items-center justify-between"
-            >
-              <span>Galleria 3D</span>
-              <ChevronRight className="w-4 h-4 text-slate-500" />
-            </a>
-            <a 
-              href="#faq" 
-              onClick={() => setMobileMenuOpen(false)} 
-              className="p-3 bg-slate-900/60 rounded-xl border border-slate-800/60 flex items-center justify-between"
-            >
-              <span>Domande Frequenti (FAQ)</span>
-              <ChevronRight className="w-4 h-4 text-slate-500" />
-            </a>
+        <div className="md:hidden fixed inset-x-0 top-[105px] bg-white border-b border-slate-200 p-6 space-y-4 z-30 shadow-xl">
+          <nav className="flex flex-col space-y-3 text-sm font-bold text-slate-800">
+            <a href="#collezione" onClick={() => setMobileMenuOpen(false)} className="p-3 bg-slate-50 rounded-xl flex justify-between">Collezione 3D <ChevronRight className="w-4 h-4 text-slate-400" /></a>
+            <a href="#come-funziona" onClick={() => setMobileMenuOpen(false)} className="p-3 bg-slate-50 rounded-xl flex justify-between">Come Funziona <ChevronRight className="w-4 h-4 text-slate-400" /></a>
+            <a href="#recensioni" onClick={() => setMobileMenuOpen(false)} className="p-3 bg-slate-50 rounded-xl flex justify-between">Recensioni <ChevronRight className="w-4 h-4 text-slate-400" /></a>
+            <a href="#faq" onClick={() => setMobileMenuOpen(false)} className="p-3 bg-slate-50 rounded-xl flex justify-between">FAQ <ChevronRight className="w-4 h-4 text-slate-400" /></a>
           </nav>
-
-          <div className="grid grid-cols-2 gap-3 pt-2">
-            <button 
-              onClick={() => { setMobileMenuOpen(false); router.push('/account'); }}
-              className="w-full py-3 bg-slate-900 border border-purple-500/40 text-purple-300 font-bold text-xs rounded-xl flex items-center justify-center gap-1.5"
-            >
+          <div className="grid grid-cols-2 gap-2 pt-2">
+            <button onClick={() => { setMobileMenuOpen(false); router.push('/account'); }} className="py-3 bg-sky-600 text-white font-bold text-xs rounded-xl flex justify-center gap-1">
               <User className="w-4 h-4" /> Area Cliente
             </button>
-            <button 
-              onClick={() => { setMobileMenuOpen(false); router.push('/admin'); }}
-              className="w-full py-3 bg-slate-900 border border-amber-500/40 text-amber-300 font-bold text-xs rounded-xl flex items-center justify-center gap-1.5"
-            >
-              <ShieldCheck className="w-4 h-4" /> Admin Panel
+            <button onClick={() => { setMobileMenuOpen(false); router.push('/admin'); }} className="py-3 bg-slate-900 text-white font-bold text-xs rounded-xl flex justify-center gap-1">
+              <ShieldCheck className="w-4 h-4" /> Admin
             </button>
           </div>
         </div>
       )}
 
-      {/* HERO SECTION */}
-      <section className="w-full max-w-7xl mx-auto px-4 sm:px-6 pt-10 sm:pt-16 pb-16 sm:pb-24 text-center relative flex flex-col items-center">
+      {/* HERO SECTION (STORE FACTORY STYLE) */}
+      <section className="w-full max-w-7xl mx-auto px-4 sm:px-6 pt-8 sm:pt-14 pb-16 grid grid-cols-1 lg:grid-cols-2 gap-10 items-center text-left">
         
-        {/* Mobile-Friendly Badge */}
-        <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-cyan-950/70 border border-cyan-500/40 text-cyan-300 text-[11px] sm:text-xs font-bold mb-6 shadow-2xl backdrop-blur-md">
-          <Sparkles className="w-3.5 h-3.5 text-amber-300 animate-spin" />
-          <span>Miniature 3D NFC Personalizzate 2026</span>
-        </div>
-
-        {/* Responsive Fluid Main Title */}
-        <h1 className="text-3xl sm:text-5xl md:text-7xl font-black text-white tracking-tight max-w-5xl mx-auto leading-[1.15] sm:leading-[1.1]">
-          Dalla tua Foto al tuo <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-500">Avatar 3D Fisico</span> con Identità NFC
-        </h1>
-
-        <p className="text-slate-400 text-xs sm:text-base md:text-xl max-w-2xl mx-auto mt-4 sm:mt-6 leading-relaxed">
-          Scultura 3D personalizzata del tuo volto integrata con chip NFC touchless ed un Profilo Cloud che aggiorni in ogni momento.
-        </p>
-
-        {/* Responsive CTA Buttons */}
-        <div className="mt-8 sm:mt-10 flex flex-col sm:flex-row items-center justify-center gap-3.5 w-full max-w-md sm:max-w-none z-10 px-2">
-          <button
-            onClick={() => router.push('/t/ST-000125')}
-            className="w-full sm:w-auto px-6 sm:px-8 py-4 rounded-2xl bg-gradient-to-r from-cyan-500 via-blue-600 to-purple-600 hover:from-cyan-400 hover:to-purple-500 text-white font-bold text-xs sm:text-sm shadow-xl shadow-cyan-500/30 active:scale-[0.98] transition flex items-center justify-center gap-2.5 group"
-          >
-            <Radio className="w-4 h-4 sm:w-5 sm:h-5 text-cyan-200 group-hover:animate-ping" />
-            <span>Simula TAP NFC (Profilo Live)</span>
-            <ChevronRight className="w-4 h-4 text-cyan-200 group-hover:translate-x-1 transition" />
-          </button>
-
-          <a
-            href="#prodotti"
-            className="w-full sm:w-auto px-6 sm:px-8 py-4 rounded-2xl bg-slate-900/90 hover:bg-slate-800 border border-slate-700/80 text-slate-200 hover:text-white font-semibold text-xs sm:text-sm transition flex items-center justify-center gap-2"
-          >
-            <span>Guarda Prodotti & Prezzi</span>
-          </a>
-        </div>
-
-        {/* RESPONSIVE SHOWCASE TEMPLATE GRID */}
-        <div className="mt-12 sm:mt-16 w-full max-w-5xl rounded-3xl p-[1px] bg-gradient-to-r from-cyan-500/30 via-blue-500/20 to-purple-500/30 shadow-2xl">
-          <div className="w-full bg-[#0b0f19] rounded-[23px] p-4 sm:p-8 border border-slate-800/80 grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 items-center text-left">
-            
-            {/* Visual Box 1 */}
-            <div className="relative aspect-[4/3] sm:aspect-square rounded-2xl overflow-hidden border border-slate-800 bg-slate-950 group">
-              <img 
-                src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80" 
-                alt="Modello 3D Smart Toon" 
-                className="w-full h-full object-cover group-hover:scale-105 transition duration-500"
-              />
-              <div className="absolute top-3 left-3 bg-cyan-600/90 text-white text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider backdrop-blur-md">
-                1. Scultura 3D
-              </div>
-            </div>
-
-            {/* Visual Box 2 */}
-            <div className="relative aspect-[4/3] sm:aspect-square rounded-2xl overflow-hidden border border-slate-800 bg-slate-950 group">
-              <img 
-                src="https://images.unsplash.com/photo-1559526324-4b87b5e36e44?auto=format&fit=crop&w=800&q=80" 
-                alt="Smart Card NFC" 
-                className="w-full h-full object-cover group-hover:scale-105 transition duration-500"
-              />
-              <div className="absolute top-3 left-3 bg-purple-600/90 text-white text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider backdrop-blur-md">
-                2. Chip NFC NTAG213
-              </div>
-            </div>
-
-            {/* Visual Box 3 */}
-            <div className="relative aspect-[4/3] sm:aspect-square rounded-2xl overflow-hidden border border-slate-800 bg-slate-950 group">
-              <img 
-                src="https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&w=800&q=80" 
-                alt="Profilo Digitale Smartphone" 
-                className="w-full h-full object-cover group-hover:scale-105 transition duration-500"
-              />
-              <div className="absolute top-3 left-3 bg-emerald-600/90 text-white text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider backdrop-blur-md">
-                3. Profilo Online
-              </div>
-            </div>
-
-          </div>
-        </div>
-
-      </section>
-
-      {/* HOW IT WORKS SECTION */}
-      <section id="come-funziona" className="w-full max-w-7xl mx-auto px-4 sm:px-6 py-16 sm:py-20 border-t border-slate-800/60">
-        <div className="text-center max-w-2xl mx-auto mb-12 sm:mb-16">
-          <span className="text-[10px] sm:text-xs font-bold text-cyan-400 uppercase tracking-widest bg-cyan-950/60 border border-cyan-800/40 px-3 py-1 rounded-full">
-            Semplice & Veloce
-          </span>
-          <h2 className="text-2xl sm:text-4xl font-extrabold text-white mt-3 sm:mt-4">Come nasce il tuo Smart Toon in 3 Passi</h2>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-8">
-          <div className="bg-[#0b0f19] border border-slate-800/80 rounded-3xl p-6 sm:p-8 space-y-3 hover:border-cyan-500/50 transition shadow-xl">
-            <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400 font-black text-lg sm:text-xl">
-              1
-            </div>
-            <h3 className="text-lg sm:text-xl font-bold text-white">Carica le tue Foto</h3>
-            <p className="text-slate-400 text-xs leading-relaxed">
-              Carichi 2 o 3 foto del tuo volto nell'Area Cliente dopo l'ordine.
-            </p>
-          </div>
-
-          <div className="bg-[#0b0f19] border border-slate-800/80 rounded-3xl p-6 sm:p-8 space-y-3 hover:border-blue-500/50 transition shadow-xl">
-            <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-blue-500/10 border border-blue-500/30 flex items-center justify-center text-blue-400 font-black text-lg sm:text-xl">
-              2
-            </div>
-            <h3 className="text-lg sm:text-xl font-bold text-white">Approva il Render 3D</h3>
-            <p className="text-slate-400 text-xs leading-relaxed">
-              Ricevi l'anteprima 3D e decidi se approvarla o richiedere una modifica.
-            </p>
-          </div>
-
-          <div className="bg-[#0b0f19] border border-slate-800/80 rounded-3xl p-6 sm:p-8 space-y-3 hover:border-purple-500/50 transition shadow-xl">
-            <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-purple-500/10 border border-purple-500/30 flex items-center justify-center text-purple-400 font-black text-lg sm:text-xl">
-              3
-            </div>
-            <h3 className="text-lg sm:text-xl font-bold text-white">Stampa 3D & NFC Active</h3>
-            <p className="text-slate-400 text-xs leading-relaxed">
-              Stampiamo l'avatar 3D, programmiamo l'NFC e spediamo a casa tua.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* PRODUCTS & PRICING SECTION */}
-      <section id="prodotti" className="w-full max-w-7xl mx-auto px-4 sm:px-6 py-16 sm:py-20 border-t border-slate-800/60">
-        <div className="text-center max-w-2xl mx-auto mb-12 sm:mb-16">
-          <span className="text-[10px] sm:text-xs font-bold text-purple-400 uppercase tracking-widest bg-purple-950/60 border border-purple-800/40 px-3 py-1 rounded-full">
-            Prodotti Ufficiali
-          </span>
-          <h2 className="text-2xl sm:text-4xl font-extrabold text-white mt-3 sm:mt-4">Scegli la tua Edizione Smart Toons</h2>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 max-w-5xl mx-auto">
+        {/* Hero Left Content */}
+        <div className="space-y-6">
           
-          {/* PRODUCT CARD 1 */}
-          <div className="bg-gradient-to-b from-[#0b0f19] to-[#07090e] border border-slate-800 hover:border-cyan-500/60 rounded-[28px] sm:rounded-[32px] p-6 sm:p-10 space-y-6 sm:space-y-8 relative overflow-hidden shadow-2xl transition duration-300">
-            <div className="flex items-center justify-between">
-              <span className="text-[10px] font-bold uppercase tracking-widest text-cyan-400 bg-cyan-950/60 border border-cyan-800/40 px-3 py-1 rounded-full">
-                Business & Card
-              </span>
+          {/* Trust Rating */}
+          <div className="flex items-center gap-2">
+            <div className="flex text-amber-400">
+              <Star className="w-4 h-4 fill-amber-400" />
+              <Star className="w-4 h-4 fill-amber-400" />
+              <Star className="w-4 h-4 fill-amber-400" />
+              <Star className="w-4 h-4 fill-amber-400" />
+              <Star className="w-4 h-4 fill-amber-400" />
+            </div>
+            <span className="text-xs font-bold text-slate-700">4.9/5 da oltre 850+ clienti felici</span>
+          </div>
+
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-black text-slate-900 tracking-tight leading-[1.1]">
+            Crea la tua <span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-600 via-indigo-600 to-purple-600">Statuetta 3D Funko</span> con Chip NFC Integrato
+          </h1>
+
+          <p className="text-slate-600 text-sm sm:text-base leading-relaxed font-normal">
+            Trasformiamo la tua fotografia in un adorabile personaggio 3D stile Cartoon Vinyl (Funko Pop). Tocca la statuetta con lo smartphone per mostrare istantaneamente il tuo Profilo Digitale!
+          </p>
+
+          {/* Key Selling Points */}
+          <div className="grid grid-cols-2 gap-3 pt-2">
+            <div className="flex items-center gap-2 text-xs font-bold text-slate-700 bg-white p-3 rounded-2xl border border-slate-200 shadow-sm">
+              <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />
+              <span>100% Personalizzato da Foto</span>
+            </div>
+            <div className="flex items-center gap-2 text-xs font-bold text-slate-700 bg-white p-3 rounded-2xl border border-slate-200 shadow-sm">
+              <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />
+              <span>Anteprima 3D Prima della Stampa</span>
+            </div>
+            <div className="flex items-center gap-2 text-xs font-bold text-slate-700 bg-white p-3 rounded-2xl border border-slate-200 shadow-sm">
+              <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />
+              <span>Chip NFC Integrato Senza Batterie</span>
+            </div>
+            <div className="flex items-center gap-2 text-xs font-bold text-slate-700 bg-white p-3 rounded-2xl border border-slate-200 shadow-sm">
+              <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />
+              <span>Profilo Online Modificabile Sempre</span>
+            </div>
+          </div>
+
+          {/* Hero CTAs */}
+          <div className="flex flex-col sm:flex-row items-center gap-3 pt-4">
+            <a
+              href="#collezione"
+              className="w-full sm:w-auto px-8 py-4 rounded-2xl bg-gradient-to-r from-sky-600 to-indigo-600 hover:from-sky-500 hover:to-indigo-500 text-white font-bold text-sm shadow-xl shadow-sky-600/25 active:scale-[0.98] transition flex items-center justify-center gap-2 group"
+            >
+              <ShoppingBag className="w-5 h-5" />
+              <span>Crea il tuo Minitoon Ora</span>
+              <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition" />
+            </a>
+
+            <button
+              onClick={() => router.push('/t/ST-000125')}
+              className="w-full sm:w-auto px-6 py-4 rounded-2xl bg-white hover:bg-slate-50 border border-slate-200 text-slate-700 font-bold text-sm shadow-sm transition flex items-center justify-center gap-2"
+            >
+              <Radio className="w-4 h-4 text-sky-600 animate-pulse" />
+              <span>Simula TAP NFC (Live)</span>
+            </button>
+          </div>
+
+        </div>
+
+        {/* Hero Right: Product Showcase Hero Image */}
+        <div className="relative">
+          <div className="aspect-[4/3] rounded-3xl overflow-hidden border-4 border-white shadow-2xl bg-slate-100 relative group">
+            <img 
+              src="https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?auto=format&fit=crop&w=1000&q=80" 
+              alt="Minitoon Factory Funko Showcase" 
+              className="w-full h-full object-cover group-hover:scale-105 transition duration-500"
+            />
+            <div className="absolute top-4 left-4 bg-sky-600 text-white text-xs font-extrabold px-3 py-1.5 rounded-full uppercase tracking-wider shadow-md">
+              Stile Funko Pop Vinyl 3D
+            </div>
+            
+            <div className="absolute bottom-4 left-4 right-4 bg-white/95 backdrop-blur-md p-4 rounded-2xl border border-slate-200 shadow-xl flex items-center justify-between">
               <div>
-                <span className="text-2xl sm:text-3xl font-black text-white">€49</span>
+                <span className="text-xs font-bold text-slate-900 block">Smart Toon #ST-000125</span>
+                <span className="text-[11px] text-slate-500">Modello 3D con Chip NFC NTAG213</span>
               </div>
+              <span className="text-xs font-black text-sky-600 bg-sky-50 border border-sky-200 px-3 py-1 rounded-xl">
+                TAP TO OPEN
+              </span>
             </div>
+          </div>
+        </div>
 
-            <div className="aspect-[16/9] rounded-2xl overflow-hidden border border-slate-800 bg-slate-950 relative">
-              <img 
-                src="https://images.unsplash.com/photo-1559526324-4b87b5e36e44?auto=format&fit=crop&w=800&q=80" 
-                alt="Minitoon Smart Card" 
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 to-transparent"></div>
-              <span className="absolute bottom-3 left-4 text-xs font-bold text-white">Minitoon Smart Card Edition</span>
+      </section>
+
+      {/* COLLECTION & PRODUCTS GRID (STORE FACTORY STYLE) */}
+      <section id="collezione" className="w-full max-w-7xl mx-auto px-4 sm:px-6 py-16 border-t border-slate-200">
+        <div className="text-center max-w-2xl mx-auto mb-14">
+          <span className="text-xs font-extrabold text-sky-600 uppercase tracking-widest bg-sky-50 border border-sky-200 px-3.5 py-1 rounded-full">
+            Collezione 2026 Ufficiale
+          </span>
+          <h2 className="text-3xl sm:text-4xl font-black text-slate-900 mt-3">Scegli il tuo Modello Minitoon</h2>
+          <p className="text-slate-500 text-sm mt-2">Tutti i prodotti includono la modellazione 3D personalizzata dalle tue foto ed il profilo cloud NFC.</p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+          
+          {/* PRODUCT CARD 1: SMART CARD */}
+          <div className="bg-white border border-slate-200 hover:border-sky-500 rounded-[32px] p-6 sm:p-8 space-y-6 shadow-lg hover:shadow-2xl transition duration-300 flex flex-col justify-between">
+            <div className="space-y-4">
+              <div className="flex items-center justify-between">
+                <span className="text-[10px] font-extrabold uppercase tracking-widest text-sky-700 bg-sky-100 px-3 py-1 rounded-full">
+                  🔥 BESTSELLER PROFESSIONAL
+                </span>
+                <span className="text-3xl font-black text-slate-900">€49 <span className="text-xs font-normal text-slate-400">/ completo</span></span>
+              </div>
+
+              <div className="aspect-[16/10] rounded-2xl overflow-hidden border border-slate-200 relative bg-slate-50">
+                <img 
+                  src="https://images.unsplash.com/photo-1559526324-4b87b5e36e44?auto=format&fit=crop&w=800&q=80" 
+                  alt="Minitoon Smart Card Edition" 
+                  className="w-full h-full object-cover"
+                />
+                <span className="absolute bottom-3 left-3 bg-slate-900 text-white text-[10px] font-bold px-2.5 py-1 rounded-md">
+                  Card 85x54 mm + NFC + QR
+                </span>
+              </div>
+
+              <div>
+                <h3 className="text-2xl font-extrabold text-slate-900">Minitoon Smart Card Edition</h3>
+                <p className="text-slate-500 text-xs mt-1 leading-relaxed">
+                  Card rigida opaca formato biglietto da visita con il tuo personaggio 3D cartoon stampato in rilievo, chip NFC integrato e QR Code sul retro.
+                </p>
+              </div>
+
+              <ul className="space-y-2 text-xs text-slate-700 pt-2 border-t border-slate-100">
+                <li className="flex items-center gap-2">
+                  <Check className="w-4 h-4 text-emerald-500 shrink-0" /> Card opaca rigida premium (85x54 mm)
+                </li>
+                <li className="flex items-center gap-2">
+                  <Check className="w-4 h-4 text-emerald-500 shrink-0" /> Chip NFC NTAG213 integrato ed invisibile
+                </li>
+                <li className="flex items-center gap-2">
+                  <Check className="w-4 h-4 text-emerald-500 shrink-0" /> Profilo Cloud modificabile a vita senza costi mensili
+                </li>
+                <li className="flex items-center gap-2">
+                  <Check className="w-4 h-4 text-emerald-500 shrink-0" /> Download automatico contatto vCard (.vcf) in rubrica
+                </li>
+              </ul>
             </div>
-
-            <div className="space-y-2">
-              <h3 className="text-xl sm:text-2xl font-bold text-white">Minitoon Smart Card Edition</h3>
-              <p className="text-slate-400 text-xs leading-relaxed">
-                Card rigida delle dimensioni di un biglietto da visita (85x54 mm) con avatar 3D in rilievo, chip NFC trasparente integrato e QR Code.
-              </p>
-            </div>
-
-            <ul className="space-y-2.5 text-xs text-slate-300 pt-2 border-t border-slate-800">
-              <li className="flex items-center gap-2.5">
-                <Check className="w-4 h-4 text-cyan-400 shrink-0" />
-                <span>Card rigida PVC opaca premium (85x54 mm)</span>
-              </li>
-              <li className="flex items-center gap-2.5">
-                <Check className="w-4 h-4 text-cyan-400 shrink-0" />
-                <span>Chip NFC NTAG213 integrato</span>
-              </li>
-              <li className="flex items-center gap-2.5">
-                <Check className="w-4 h-4 text-cyan-400 shrink-0" />
-                <span>Profilo Digitale Cloud aggiornabile online</span>
-              </li>
-            </ul>
 
             <button 
               onClick={() => router.push('/account')}
-              className="w-full py-3.5 sm:py-4 rounded-2xl bg-cyan-600 hover:bg-cyan-500 text-white font-bold text-xs sm:text-sm shadow-xl shadow-cyan-600/20 transition flex items-center justify-center gap-2"
+              className="w-full py-4 rounded-2xl bg-sky-600 hover:bg-sky-500 text-white font-bold text-sm shadow-lg shadow-sky-600/20 transition flex items-center justify-center gap-2 mt-4"
             >
-              <span>Ordina Minitoon Smart Card</span>
+              <span>Personalizza Smart Card Ora</span>
               <ArrowRight className="w-4 h-4" />
             </button>
           </div>
 
-          {/* PRODUCT CARD 2 */}
-          <div className="bg-gradient-to-b from-[#0b0f19] to-[#07090e] border border-slate-800 hover:border-purple-500/60 rounded-[28px] sm:rounded-[32px] p-6 sm:p-10 space-y-6 sm:space-y-8 relative overflow-hidden shadow-2xl transition duration-300">
-            <div className="flex items-center justify-between">
-              <span className="text-[10px] font-bold uppercase tracking-widest text-purple-400 bg-purple-950/60 border border-purple-800/40 px-3 py-1 rounded-full">
-                Gadget & Portachiavi
-              </span>
-              <div>
-                <span className="text-2xl sm:text-3xl font-black text-white">€39</span>
+          {/* PRODUCT CARD 2: MICROTOON SMARTPHONE */}
+          <div className="bg-white border border-slate-200 hover:border-purple-500 rounded-[32px] p-6 sm:p-8 space-y-6 shadow-lg hover:shadow-2xl transition duration-300 flex flex-col justify-between">
+            <div className="space-y-4">
+              <div className="flex items-center justify-between">
+                <span className="text-[10px] font-extrabold uppercase tracking-widest text-purple-700 bg-purple-100 px-3 py-1 rounded-full">
+                  ⭐ PIÙ POPOLARE
+                </span>
+                <span className="text-3xl font-black text-slate-900">€39 <span className="text-xs font-normal text-slate-400">/ completo</span></span>
               </div>
-            </div>
 
-            <div className="aspect-[16/9] rounded-2xl overflow-hidden border border-slate-800 bg-slate-950 relative">
-              <img 
-                src="https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?auto=format&fit=crop&w=800&q=80" 
-                alt="Microtoon Smartphone Edition" 
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 to-transparent"></div>
-              <span className="absolute bottom-3 left-4 text-xs font-bold text-white">Microtoon Smartphone Edition</span>
-            </div>
+              <div className="aspect-[16/10] rounded-2xl overflow-hidden border border-slate-200 relative bg-slate-50">
+                <img 
+                  src="https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?auto=format&fit=crop&w=800&q=80" 
+                  alt="Microtoon Smartphone Edition" 
+                  className="w-full h-full object-cover"
+                />
+                <span className="absolute bottom-3 left-3 bg-purple-900 text-white text-[10px] font-bold px-2.5 py-1 rounded-md">
+                  Miniatura 3D 30-50 mm + Portachiavi
+                </span>
+              </div>
 
-            <div className="space-y-2">
-              <h3 className="text-xl sm:text-2xl font-bold text-white">Microtoon Smartphone Edition</h3>
-              <p className="text-slate-400 text-xs leading-relaxed">
-                Miniatura 3D tascabile (30–50 mm) utilizzabile come portachiavi o accessorio smartphone, con chip NFC integrato.
-              </p>
-            </div>
+              <div>
+                <h3 className="text-2xl font-extrabold text-slate-900">Microtoon Smartphone Edition</h3>
+                <p className="text-slate-500 text-xs mt-1 leading-relaxed">
+                  Statuetta 3D tascabile stile Funko Pop (30–50 mm) da portare con te come portachiavi o accessorio smartphone, con chip NFC integrato nella struttura.
+                </p>
+              </div>
 
-            <ul className="space-y-2.5 text-xs text-slate-300 pt-2 border-t border-slate-800">
-              <li className="flex items-center gap-2.5">
-                <Check className="w-4 h-4 text-purple-400 shrink-0" />
-                <span>Miniatura 3D ad alta definizione (30–50 mm)</span>
-              </li>
-              <li className="flex items-center gap-2.5">
-                <Check className="w-4 h-4 text-purple-400 shrink-0" />
-                <span>Anello e cordino inclusi</span>
-              </li>
-              <li className="flex items-center gap-2.5">
-                <Check className="w-4 h-4 text-purple-400 shrink-0" />
-                <span>Profilo Digitale Cloud aggiornabile online</span>
-              </li>
-            </ul>
+              <ul className="space-y-2 text-xs text-slate-700 pt-2 border-t border-slate-100">
+                <li className="flex items-center gap-2">
+                  <Check className="w-4 h-4 text-purple-600 shrink-0" /> Miniatura 3D Cartoon Vinyl (30-50 mm)
+                </li>
+                <li className="flex items-center gap-2">
+                  <Check className="w-4 h-4 text-purple-600 shrink-0" /> Anello portachiavi metallico ad alta resistenza
+                </li>
+                <li className="flex items-center gap-2">
+                  <Check className="w-4 h-4 text-purple-600 shrink-0" /> Chip NFC annegato nella resina (impermeabile)
+                </li>
+                <li className="flex items-center gap-2">
+                  <Check className="w-4 h-4 text-purple-600 shrink-0" /> Profilo Cloud modificabile a vita senza costi mensili
+                </li>
+              </ul>
+            </div>
 
             <button 
               onClick={() => router.push('/account')}
-              className="w-full py-3.5 sm:py-4 rounded-2xl bg-purple-600 hover:bg-purple-500 text-white font-bold text-xs sm:text-sm shadow-xl shadow-purple-600/20 transition flex items-center justify-center gap-2"
+              className="w-full py-4 rounded-2xl bg-purple-600 hover:bg-purple-500 text-white font-bold text-sm shadow-lg shadow-purple-600/20 transition flex items-center justify-center gap-2 mt-4"
             >
-              <span>Ordina Microtoon Smartphone</span>
+              <span>Personalizza Microtoon Ora</span>
               <ArrowRight className="w-4 h-4" />
             </button>
           </div>
@@ -400,71 +346,103 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* GALLERY 3D SHOWCASE */}
-      <section id="galleria" className="w-full max-w-7xl mx-auto px-4 sm:px-6 py-16 sm:py-20 border-t border-slate-800/60 text-center">
-        <span className="text-[10px] sm:text-xs font-bold text-cyan-400 uppercase tracking-widest bg-cyan-950/60 border border-cyan-800/40 px-3 py-1 rounded-full">
-          Portfolio 3D
-        </span>
-        <h2 className="text-2xl sm:text-4xl font-extrabold text-white mt-3 sm:mt-4">Esempi di Prototipi e Miniature Realizzate</h2>
+      {/* HOW IT WORKS DETAILED (STEP BY STEP) */}
+      <section id="come-funziona" className="w-full max-w-7xl mx-auto px-4 sm:px-6 py-16 border-t border-slate-200">
+        <div className="text-center max-w-2xl mx-auto mb-14">
+          <h2 className="text-3xl font-extrabold text-slate-900">Il Processo di Creazione 3D</h2>
+          <p className="text-slate-500 text-sm mt-1">Dalla tua foto alla statuetta NFC consegnata a casa tua.</p>
+        </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 mt-8 sm:mt-12">
-          <div className="relative aspect-square rounded-2xl overflow-hidden border border-slate-800 bg-slate-950 group shadow-lg">
-            <img 
-              src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=600&q=80" 
-              alt="Avatar 3D Model 1" 
-              className="w-full h-full object-cover group-hover:scale-110 transition duration-500"
-            />
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+          <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-3">
+            <div className="w-10 h-10 rounded-xl bg-sky-100 text-sky-600 flex items-center justify-center font-black">1</div>
+            <h4 className="font-bold text-slate-900 text-base">Invia le tue Foto</h4>
+            <p className="text-slate-500 text-xs leading-relaxed">Scegli il prodotto e carichi 2 o 3 foto trasparenti del tuo volto nell'Area Cliente.</p>
           </div>
 
-          <div className="relative aspect-square rounded-2xl overflow-hidden border border-slate-800 bg-slate-950 group shadow-lg">
-            <img 
-              src="https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?auto=format&fit=crop&w=600&q=80" 
-              alt="Avatar 3D Model 2" 
-              className="w-full h-full object-cover group-hover:scale-110 transition duration-500"
-            />
+          <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-3">
+            <div className="w-10 h-10 rounded-xl bg-indigo-100 text-indigo-600 flex items-center justify-center font-black">2</div>
+            <h4 className="font-bold text-slate-900 text-base">Modellazione 3D</h4>
+            <p className="text-slate-500 text-xs leading-relaxed">I nostri artisti 3D modellano il tuo avatar tridimensionale stile Funko Cartoon.</p>
           </div>
 
-          <div className="relative aspect-square rounded-2xl overflow-hidden border border-slate-800 bg-slate-950 group shadow-lg">
-            <img 
-              src="https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?auto=format&fit=crop&w=600&q=80" 
-              alt="Avatar 3D Model 3" 
-              className="w-full h-full object-cover group-hover:scale-110 transition duration-500"
-            />
+          <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-3">
+            <div className="w-10 h-10 rounded-xl bg-purple-100 text-purple-600 flex items-center justify-center font-black">3</div>
+            <h4 className="font-bold text-slate-900 text-base">Approvazione Render</h4>
+            <p className="text-slate-500 text-xs leading-relaxed">Vedi l'anteprima 3D nell'area cliente e decidi se approvarla o chiedere modifiche.</p>
           </div>
 
-          <div className="relative aspect-square rounded-2xl overflow-hidden border border-slate-800 bg-slate-950 group shadow-lg">
-            <img 
-              src="https://images.unsplash.com/photo-1563089145-599997674d42?auto=format&fit=crop&w=600&q=80" 
-              alt="Avatar 3D Model 4" 
-              className="w-full h-full object-cover group-hover:scale-110 transition duration-500"
-            />
+          <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-3">
+            <div className="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center font-black">4</div>
+            <h4 className="font-bold text-slate-900 text-base">Stampa & Spedizione</h4>
+            <p className="text-slate-500 text-xs leading-relaxed">Stampiamo la miniatura 3D, inseriamo il chip NFC e ti spediamo la scatola a casa.</p>
           </div>
         </div>
       </section>
 
-      {/* FAQ SECTION */}
-      <section id="faq" className="w-full max-w-4xl mx-auto px-4 sm:px-6 py-16 sm:py-20 border-t border-slate-800/60">
-        <div className="text-center mb-10 sm:mb-12">
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-white">Domande Frequenti (FAQ)</h2>
+      {/* CUSTOMER REVIEWS (STORE FACTORY STYLE) */}
+      <section id="recensioni" className="w-full max-w-7xl mx-auto px-4 sm:px-6 py-16 border-t border-slate-200 bg-slate-50/50">
+        <div className="text-center max-w-2xl mx-auto mb-14">
+          <h2 className="text-3xl font-extrabold text-slate-900">Cosa dicono i nostri clienti</h2>
+          <p className="text-slate-500 text-sm mt-1">Oltre 850+ statuette 3D NFC create con successo!</p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-3 text-left">
+            <div className="flex text-amber-400">
+              <Star className="w-4 h-4 fill-amber-400" /><Star className="w-4 h-4 fill-amber-400" /><Star className="w-4 h-4 fill-amber-400" /><Star className="w-4 h-4 fill-amber-400" /><Star className="w-4 h-4 fill-amber-400" />
+            </div>
+            <p className="text-slate-600 text-xs leading-relaxed font-medium">
+              "Idea pazzesca! Ho regalato il Minitoon Smart Card a mio marito per la sua attività: la somiglianza del volto cartoon 3D è incredibile ed il chip NFC funziona al primo tocco!"
+            </p>
+            <span className="block text-xs font-bold text-slate-900">— Laura M. (Milano)</span>
+          </div>
+
+          <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-3 text-left">
+            <div className="flex text-amber-400">
+              <Star className="w-4 h-4 fill-amber-400" /><Star className="w-4 h-4 fill-amber-400" /><Star className="w-4 h-4 fill-amber-400" /><Star className="w-4 h-4 fill-amber-400" /><Star className="w-4 h-4 fill-amber-400" />
+            </div>
+            <p className="text-slate-600 text-xs leading-relaxed font-medium">
+              "Il Microtoon da portachiavi è bellissimo! Tutti nelle fiere mi chiedono dove l'ho fatto. Basta avvicinare l'iPhone e salvano subito il mio contatto in rubrica!"
+            </p>
+            <span className="block text-xs font-bold text-slate-900">— Davide R. (Bologna)</span>
+          </div>
+
+          <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-3 text-left">
+            <div className="flex text-amber-400">
+              <Star className="w-4 h-4 fill-amber-400" /><Star className="w-4 h-4 fill-amber-400" /><Star className="w-4 h-4 fill-amber-400" /><Star className="w-4 h-4 fill-amber-400" /><Star className="w-4 h-4 fill-amber-400" />
+            </div>
+            <p className="text-slate-600 text-xs leading-relaxed font-medium">
+              "Servizio clienti fantastico. Mi hanno inviato il render 3D per approvazione, ho chiesto una piccola modifica ai capelli e l'hanno fatta subito prima di stampare."
+            </p>
+            <span className="block text-xs font-bold text-slate-900">— Matteo B. (Roma)</span>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ ACCORDION SECTION */}
+      <section id="faq" className="w-full max-w-4xl mx-auto px-4 sm:px-6 py-16 border-t border-slate-200">
+        <div className="text-center mb-10">
+          <h2 className="text-3xl font-extrabold text-slate-900">Domande Frequenti (FAQ)</h2>
         </div>
 
         <div className="space-y-3">
           {faqs.map((faq, index) => (
             <div 
               key={index} 
-              className="bg-[#0b0f19] border border-slate-800/80 rounded-2xl overflow-hidden transition"
+              className="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm"
             >
               <button
                 onClick={() => setOpenFaq(openFaq === index ? null : index)}
-                className="w-full p-4 sm:p-5 text-left flex items-center justify-between text-xs sm:text-sm font-bold text-white hover:text-cyan-400 transition"
+                className="w-full p-4 sm:p-5 text-left flex items-center justify-between text-xs sm:text-sm font-bold text-slate-900 hover:text-sky-600 transition"
               >
                 <span>{faq.q}</span>
-                <span className="text-cyan-400 text-base font-mono ml-2">
+                <span className="text-sky-600 font-mono text-base ml-2">
                   {openFaq === index ? '−' : '+'}
                 </span>
               </button>
               {openFaq === index && (
-                <div className="px-4 sm:px-5 pb-4 text-[11px] sm:text-xs text-slate-400 leading-relaxed border-t border-slate-800/40 pt-3">
+                <div className="px-4 sm:px-5 pb-4 text-xs text-slate-600 leading-relaxed border-t border-slate-100 pt-3">
                   {faq.a}
                 </div>
               )}
@@ -474,29 +452,30 @@ export default function HomePage() {
       </section>
 
       {/* FOOTER */}
-      <footer className="w-full border-t border-slate-800/80 py-10 bg-[#05070b]">
+      <footer className="w-full border-t border-slate-200 py-10 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-cyan-400 to-purple-600 p-[1px]">
-              <div className="w-full h-full bg-[#0b0f19] rounded-[11px] flex items-center justify-center">
-                <Box className="w-4 h-4 text-cyan-400" />
+            <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-sky-500 to-indigo-600 p-[1px]">
+              <div className="w-full h-full bg-white rounded-[11px] flex items-center justify-center">
+                <Smile className="w-5 h-5 text-sky-600" />
               </div>
             </div>
             <div>
-              <span className="font-extrabold text-sm text-white tracking-wider">SMART TOONS STUDIO</span>
-              <span className="block text-[9px] text-slate-500">Avatar Fisici 3D con Identità NFC Integrata</span>
+              <span className="font-extrabold text-sm text-slate-900 tracking-tight">MINITOON FACTORY STUDIO</span>
+              <span className="block text-[9px] text-slate-500">Statuette 3D Cartoon Personalizzate con Chip NFC</span>
             </div>
           </div>
 
-          <div className="flex flex-wrap justify-center items-center gap-4 sm:gap-6 text-xs text-slate-400">
-            <a href="#come-funziona" className="hover:text-cyan-400 transition">Come Funziona</a>
-            <a href="#prodotti" className="hover:text-cyan-400 transition">Prodotti</a>
-            <a href="#faq" className="hover:text-cyan-400 transition">FAQ</a>
-            <button onClick={() => router.push('/account')} className="hover:text-cyan-400 transition">Area Cliente</button>
-            <button onClick={() => router.push('/admin')} className="hover:text-cyan-400 transition">Admin</button>
+          <div className="flex flex-wrap justify-center items-center gap-4 sm:gap-6 text-xs text-slate-600 font-semibold">
+            <a href="#collezione" className="hover:text-sky-600 transition">Collezione 3D</a>
+            <a href="#come-funziona" className="hover:text-sky-600 transition">Come Funziona</a>
+            <a href="#recensioni" className="hover:text-sky-600 transition">Recensioni</a>
+            <a href="#faq" className="hover:text-cyan-600 transition">FAQ</a>
+            <button onClick={() => router.push('/account')} className="hover:text-sky-600 transition">Area Cliente</button>
+            <button onClick={() => router.push('/admin')} className="hover:text-sky-600 transition">Admin</button>
           </div>
 
-          <p className="text-[11px] text-slate-600">© 2026 Smart Toons — All rights reserved.</p>
+          <p className="text-[11px] text-slate-500">© 2026 Minitoon Factory — All rights reserved.</p>
         </div>
       </footer>
 
